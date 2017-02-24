@@ -1,14 +1,29 @@
 <html>
   <body>
     <p id='server-time'></p>
+
+    <label id="yo" onclick="yoClick()">0</label>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
       var el = document.getElementById('server-time');
+      var yo = document.getElementById('yo');
 
       socket.on('time', function(timeString) {
         el.innerHTML = 'Server time: ' + timeString;
       });
+
+      function yoClick() {
+  socket.emit('yoClick');
+  console.log('clickity');
+  };
+
+  socket.on('hideBox', function () {
+    yo.innerHTML='hidehide';
+});
+
     </script>
+
   </body>
+
 </html>
